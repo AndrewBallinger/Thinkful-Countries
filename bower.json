@@ -1,0 +1,21 @@
+{
+  "name": "countries",
+  "homepage": "https://github.com/AndrewBallinger/Thinkful-Countries",
+  "authors": [
+    "Andrew Ballinger <aballinger@payjunction.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
+}
