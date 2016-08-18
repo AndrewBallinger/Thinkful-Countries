@@ -1,0 +1,20 @@
+<table>
+  <tr class="headers">
+    <th>Name</th>
+    <th>Country Code</th>
+    <th>Capital</th>
+    <th>Area in km2</th>
+    <th>Population</th>
+    <th>Continent</th>
+  </tr>
+
+  <tr ng-repeat="country in countries.response" ng-click="countries.countryClicked(country)">
+    <td>{{ country.countryName }}</td>
+    <td>{{ country.countryCode }}</td>
+    <td>{{ country.capital }}</td>
+    <td>{{ country.areaInSqKm }}</td>
+    <td>{{ country.population }}</td>
+    <td>{{ country.continent }}</td>
+  </tr>
+
+</table>
