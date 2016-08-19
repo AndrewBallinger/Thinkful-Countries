@@ -1,5 +1,37 @@
-In addition to these API endpoints, you'll also get flag images for individual countries using the following url schema for img sources: <img ng-src="http://www.geonames.org/flags/x/{{ country.countryCode.toLowerCase() }}.gif" />
+<section>
+  <h2> {{ country.name }}</h2>
 
-Similarly, you'll get map images for countries like this, but here (don't ask us why!) the two letter country code must be in upper case.
+  <div class="info-row">
+    <div class="label">Population of Country:</div>
+    <div class="value">{{ country.population }}</div></div>
 
-<img id='myImage' ng-src="http://www.geonames.org/img/country/250/{{ country.countryCode }}.png" />
+  <div class="info-row">
+    <div class="label">Area:</div>
+    <div class="value">{{ country.areaInSqKm }} square km</div></div>
+
+  <div class="info-row">
+    <div class="label">Capital:</div>
+    <div class="value">{{ country.capital }} square km</div></div>
+
+  <div class="info-row">
+    <div class="label">Population of capital:</div>
+    <div class="value">{{ country.capital_population }} square km</div></div>
+
+  <div class="info-row">
+    <div class="label">{{ country.neighbors.length }} neighbors:</div>
+    <div class="value">
+      <div ng-repeat="neighbor in country.neighbors" class="nav-button">
+        <a ng-href="#/countries/{{ neighbor.countryCode }}">{{ neighbor.name }}</a></div></div></div>
+
+  <div class="info-images">
+    <img class="info-flag" ng-src="http://www.geonames.org/flags/x/{{ country.countryCode.toLowerCase() }}.gif" />
+    <img class="info-map" id='myImage' ng-src="http://www.geonames.org/img/country/250/{{ country.countryCode }}.png" /></div></section>
+
+
+<div class="nav-button-container">
+  <div class="nav-button">
+    <a ng-href="#/"> Home </a></div>
+  <div class="nav-button">
+    <a ng-href="#/countries"> Countries </a></div></div>
+
+

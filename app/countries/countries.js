@@ -18,28 +18,19 @@ viewsModule.config(['$routeProvider', function($routeProvider) {
 viewsModule.controller('CountriesCtrl', ['geoCountries', '$location', function(geoCountries, $location) {
   countries = this;
   countries.response = [];
+  countries.errors = [];
   geoCountries()
     .then(
       (countriesResponse) => {
         countries.response = countriesResponse
       }
     );
-
-  countries.countryClicked = function(country){
-    $location.path('/countries/' + country.countryCode);
-  }
 }]);
 
 viewsModule.controller('CountryCtrl', ['geoNeighbors', 'geoCapitalPopulation', '$location', 'country', function(geoNeighbors, geoCapitalPopulation, $location, country) {
   country = angular.merge(this, country);
-  country.neighbors = []
-
+  country.neighbors = [];
+  country.capital_population = [];
   geoNeighbors(country).then( (response) => country.neighbors = response );
-
   geoCapitalPopulation(country).then( (response) => country.capital_population = response );
-
-  country.neighborClicked = function(neighbor) {
-    $location.path('/countries/' + neighbor.countryCode);
-  }
-  
 }]);

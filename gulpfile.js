@@ -8,6 +8,7 @@ var minifyCss = require('gulp-clean-css');
 var usemin = require('gulp-usemin');
 var rev = require('gulp-rev');
 var clean = require('gulp-clean');
+var livereload = require('gulp-livereload');
 
 var paths = {
   scripts: [ 'app/**/*.js', '!app/bower_components/**/*.js' ],
@@ -41,10 +42,26 @@ gulp.task('usemin', [ 'copy' ], function(){
 
 gulp.task('build', ['usemin']);
 
+gulp.task('html', function () {
+  gulp.src('./app/**/*.html')
+      .pipe(connect.reload());
+  gulp.src('./app/**/*.js')
+      .pipe(connect.reload());
+  gulp.src('./app/**/*.css')
+      .pipe(connect.reload());
+});
+
+gulp.task('watch', function () {
+  gulp.watch(['./app/**/*.html', './app/**/*.css', './app/**/*.js'], ['html']);
+});
+
+gulp.task('default', ['connect', 'watch']);
+
 // connect
 gulp.task('connect', function() {
   connect.server({
-    root: 'app/'
+    root: 'app/',
+    livereload: true
   });
 });
-gulp.task('default', ['connect']);
+gulp.task('default', ['connect', 'watch']);

@@ -1,20 +1,26 @@
-<table>
-  <tr class="headers">
-    <th>Name</th>
-    <th>Country Code</th>
-    <th>Capital</th>
-    <th>Area in km2</th>
-    <th>Population</th>
-    <th>Continent</th>
-  </tr>
+<!-- I have to use divs instead of the semantic elements for everything because html is like a Hieronymus Bosch painting -->
+<section class="loading" ng-if="countries.response.length == 0 && countries.errors.length == 0"></section>
+<section class="errors" ng-if="countries.errors.length > 0">
+  <div class="error" ng-repeat="error in countries.errors"> {{ error }} </div>
+</section>
+<section ng-if="countries.response.length > 0" class="table-wrapper">
+  <div class="table">
+    <div class="headers fixed-header">
+      <div class="header">Name</div>
+      <div class="header">Country Code</div>
+      <div class="header">Capital</div>
+      <div class="header">Area in km2</div>
+      <div class="header">Population</div>
+      <div class="header">Continent</div></div></div>
 
-  <tr ng-repeat="country in countries.response" ng-click="countries.countryClicked(country)">
-    <td>{{ country.countryName }}</td>
-    <td>{{ country.countryCode }}</td>
-    <td>{{ country.capital }}</td>
-    <td>{{ country.areaInSqKm }}</td>
-    <td>{{ country.population }}</td>
-    <td>{{ country.continent }}</td>
-  </tr>
+  <div class="table">
+    <div class="headers"><div class="header">&nbsp</div></div>
+      <a class="row" ng-href="#/countries/{{ country.countryCode }}" ng-repeat="country in countries.response">
+          <div class="cell">{{ country.countryName }}</div>
+          <div class="cell">{{ country.countryCode }}</div>
+          <div class="cell">{{ country.capital }}</div>
+          <div class="cell">{{ country.areaInSqKm | number }}</div>
+          <div class="cell">{{ country.population | number }}</div>
+          <div class="cell">{{ country.continent }}</div></a></div></section>
 
-</table>
+<div class="nav-button-container"><div class="nav-button"> <a ng-href="#/"> Home </a></div></div> 
