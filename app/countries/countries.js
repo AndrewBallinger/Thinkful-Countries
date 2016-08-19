@@ -15,7 +15,7 @@ viewsModule.config(['$routeProvider', function($routeProvider) {
   });
 }]);
 
-viewsModule.controller('CountriesCtrl', ['geoCountries', '$location', function(geoCountries, $location) {
+viewsModule.controller('CountriesCtrl', ['geoCountries', function(geoCountries) {
   countries = this;
   countries.response = [];
   countries.errors = [];

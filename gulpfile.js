@@ -2,13 +2,12 @@
 var gulp = require('gulp'); 
 var connect = require('gulp-connect');
 var uglify = require('gulp-uglify');
+var gutil = require('gulp-util');
+var eslint = require('gulp-eslint');
 var ngmin = require('gulp-ng-annotate');
-var minifyHtml = require('gulp-minify-html');
 var minifyCss = require('gulp-clean-css');
 var usemin = require('gulp-usemin');
-var rev = require('gulp-rev');
 var clean = require('gulp-clean');
-var livereload = require('gulp-livereload');
 
 var paths = {
   scripts: [ 'app/**/*.js', '!app/bower_components/**/*.js' ],
@@ -31,11 +30,19 @@ gulp.task('copy', [ 'clean' ], function() {
     .pipe(gulp.dest('build/'));
 });
 
+gulp.task('lint', () => {
+  return gulp.src(['**/*.js','!app/bower_components/**/*.js','!node_modules/**'])
+             .pipe(eslint())
+             .pipe(eslint.format())
+             .pipe(eslint.failAfterError());
+});
+
+
 gulp.task('usemin', [ 'copy' ], function(){
   gulp.src( paths.index )
     .pipe(usemin({
       css: [ minifyCss(), 'concat' ],
-      js: [ ngmin(), uglify() ]
+      js: [ ngmin(), uglify().on('error', gutil.log) ]
     }))
     .pipe(gulp.dest( paths.build ))
 });
