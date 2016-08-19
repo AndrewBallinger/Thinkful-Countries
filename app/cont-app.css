@@ -93,6 +93,13 @@ a:active {
     background-color: red;
 }
 
+.animation-wrapper {
+    min-height: 400px;
+    width: 651px;
+    max-width: 651px;
+    margin: 25px auto;
+}
+
 section {
     height: 400px;
     max-height: 400px;
@@ -103,24 +110,44 @@ section {
     margin: 25px auto;
     box-shadow: 2px 2px 2px black;
     border: 1px solid black;
+    position: absolute;
+    transition: 1s linear all;
 }
+
 
 .loading {
-    background-image: url("/soup.jpg");
+    background-image: url("/loop.gif");
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 200px, 200px;
-    animation-name: rotate;
-    animation-duration: 2s;
-    animation-itteration-count: infinite;
-    animation-timing-function: linear;
-    box-shadow: none;
-    border: none;
+    background-size: cover;
 }
 
-@keyframes rotate {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(360deg);}
+.loading.ng-leave-active {
+    opacity:0;
+}
+
+
+.cont-view-wrapper {
+    margin: 25px auto;
+    max-width: 651px;
+    width: 651px;
+}
+
+.cont-view {
+    transition: 0.1s linear all;
+    position: absolute;
+}
+
+.cont-view.ng-leave-active {
+    margin-left: 3000px;
+}
+
+.cont-view.ng-enter-active {
+    margin-left: -3000px;
+}
+
+.cont-view.ng-enter {
+    margin-left: -3000px;
 }
 
 .info-map {
@@ -164,4 +191,10 @@ section {
 
 .info-row .nav-button {
     margin-right: 10px;
+}
+
+.error {
+    font-size: 2em;
+    text-align: center;
+    height: 4em;
 }

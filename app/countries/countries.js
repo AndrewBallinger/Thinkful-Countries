@@ -19,18 +19,30 @@ viewsModule.controller('CountriesCtrl', ['geoCountries', '$location', function(g
   countries = this;
   countries.response = [];
   countries.errors = [];
+
   geoCountries()
     .then(
       (countriesResponse) => {
         countries.response = countriesResponse
-      }
+      },
+      () => {
+        countries.errors = countries.errors.concat(["Unable to load countries list"]) }
     );
 }]);
 
-viewsModule.controller('CountryCtrl', ['geoNeighbors', 'geoCapitalPopulation', '$location', 'country', function(geoNeighbors, geoCapitalPopulation, $location, country) {
+viewsModule.controller('CountryCtrl', ['geoNeighbors', 'geoCapitalPopulation', '$location', 'country', '$q', function(geoNeighbors, geoCapitalPopulation, $location, country, $q) {
   country = angular.merge(this, country);
-  country.neighbors = [];
-  country.capital_population = [];
-  geoNeighbors(country).then( (response) => country.neighbors = response );
-  geoCapitalPopulation(country).then( (response) => country.capital_population = response );
+  country.neighbors = undefined;
+  country.capital_population = undefined;
+  country.errors = [];
+
+  country.loading = true;
+  $q.all( { neighbors: geoNeighbors(country), population : geoCapitalPopulation(country) } )
+    .then( (response) => {
+      country.capital_population = response.population 
+      country.neighbors = response.neighbors
+      country.loading = false },
+           () => {
+             country.errors = country.errors.concat(["Unable to load country details"]) } );
+
 }]);

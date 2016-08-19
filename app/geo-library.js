@@ -7,7 +7,7 @@ angular.module('geoLibrary', ['xml'])
  .factory('geoRouter', ['API_ROUTE', 'USERNAME', "$http", function(API_ROUTE, USERNAME, $http){
    return function(route, params) {
      var _params = angular.merge({ username: USERNAME }, params);
-     return $http.get(API_ROUTE + route,{ params: _params} )
+     return $http.get(API_ROUTE + route,{ params: _params, timeout: 2000 } )
    }
  }])
  .factory('geoCountries', ['geoRouter', '$q', function(geoRouter, $q) {

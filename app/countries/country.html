@@ -1,31 +1,36 @@
-<section>
-  <h2> {{ country.name }}</h2>
-
-  <div class="info-row">
-    <div class="label">Population of Country:</div>
-    <div class="value">{{ country.population }}</div></div>
-
-  <div class="info-row">
-    <div class="label">Area:</div>
-    <div class="value">{{ country.areaInSqKm }} square km</div></div>
-
-  <div class="info-row">
-    <div class="label">Capital:</div>
-    <div class="value">{{ country.capital }} square km</div></div>
-
-  <div class="info-row">
-    <div class="label">Population of capital:</div>
-    <div class="value">{{ country.capital_population }} square km</div></div>
-
-  <div class="info-row">
-    <div class="label">{{ country.neighbors.length }} neighbors:</div>
-    <div class="value">
-      <div ng-repeat="neighbor in country.neighbors" class="nav-button">
-        <a ng-href="#/countries/{{ neighbor.countryCode }}">{{ neighbor.name }}</a></div></div></div>
-
-  <div class="info-images">
-    <img class="info-flag" ng-src="http://www.geonames.org/flags/x/{{ country.countryCode.toLowerCase() }}.gif" />
-    <img class="info-map" id='myImage' ng-src="http://www.geonames.org/img/country/250/{{ country.countryCode }}.png" /></div></section>
+<div class="animation-wrapper">
+  <section class="loading" ng-if="country.loading && country.errors.length == 0"></section>
+  <section class="errors" ng-if="country.errors.length > 0">
+    <div class="error" ng-repeat="error in country.errors"> {{ error }} </div>
+  </section>        
+  <section class="content" ng-if="!country.loading" >
+    <h2> {{ country.name }}</h2>
+  
+    <div class="info-row">
+      <div class="label">Population of Country:</div>
+      <div class="value">{{ country.population }}</div></div>
+  
+    <div class="info-row">
+      <div class="label">Area:</div>
+      <div class="value">{{ country.areaInSqKm }} square km</div></div>
+  
+    <div class="info-row">
+      <div class="label">Capital:</div>
+      <div class="value">{{ country.capital }} square km</div></div>
+  
+    <div class="info-row">
+      <div class="label">Population of capital:</div>
+      <div class="value">{{ country.capital_population }} square km</div></div>
+  
+    <div class="info-row">
+      <div class="label">{{ country.neighbors.length }} neighbors:</div>
+      <div class="value">
+        <div ng-repeat="neighbor in country.neighbors" class="nav-button">
+          <a ng-href="#/countries/{{ neighbor.countryCode }}">{{ neighbor.name }}</a></div></div></div>
+  
+    <div class="info-images">
+      <img class="info-flag" ng-src="http://www.geonames.org/flags/x/{{ country.countryCode.toLowerCase() }}.gif" />
+      <img class="info-map" id='myImage' ng-src="http://www.geonames.org/img/country/250/{{ country.countryCode }}.png" /></div></section></div>
 
 
 <div class="nav-button-container">
