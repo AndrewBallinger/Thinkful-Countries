@@ -1,3 +1,4 @@
+/*global viewsModule*/
 viewsModule.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when("/countries", {
     templateUrl : './countries/countries.html',
@@ -5,7 +6,7 @@ viewsModule.config(['$routeProvider', function($routeProvider) {
   });
 }]);
 
-viewsModule.controller('CountriesCtrl', ['geoCountries', '$scope', function(geoCountries, $scope) {
+viewsModule.controller('CountriesCtrl', ['geoCountries', function(geoCountries) {
   var countries = this;
   countries.response = [];
   countries.errors = [];
