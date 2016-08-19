@@ -1,9 +1,9 @@
 angular.module('geoLibrary', ['xml'])
   .constant("API_ROUTE", "http://api.geonames.org/")
   .constant("USERNAME", "andrewballinger")
-  .config(function($httpProvider) {
+  .config([ '$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push('xmlHttpInterceptor');
-  })
+  }])
  .factory('geoRouter', ['API_ROUTE', 'USERNAME', "$http", function(API_ROUTE, USERNAME, $http){
    return function(route, params) {
      var _params = angular.merge({ username: USERNAME }, params);

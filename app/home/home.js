@@ -1,13 +1,5 @@
 viewsModule.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when("/", {
-    templateUrl : "/home/home.html",
-    controller : "HomeCtrl as home"
+    templateUrl : "./home/home.html"
   });
-}]);
-
-viewsModule.controller('HomeCtrl', ['$location', function($location) {
-  home = this;
-  home.buttonClicked = function () {
-    $location.path('/countries');
-  }
 }]);

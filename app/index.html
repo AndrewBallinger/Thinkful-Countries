@@ -12,10 +12,9 @@
   <header>
     <h1>Countries & Capitals</h1></header>
   <div class="cont-view-wrapper">
-    <div class="cont-view" ng-view></div></div>
+    <div class="cont-view" ng-view ng-strict-di></div></div>
 
 <!-- build:js ./_assets/combined.js -->
-<script src="./bower_components/underscore/underscore.js"></script>
 <script src="./bower_components/angular/angular.js"></script>
 <script src="./bower_components/angular-route/angular-route.js"></script>
 <script src="./bower_components/angular-animate/angular-animate.js"></script>
@@ -25,6 +24,7 @@
 <script src="./geo-library.js"></script>
 <script src="./home/home.js"></script>
 <script src="./countries/countries.js"></script>
+<script src="./country/country.js"></script>
 <script src="./cont-app.js"></script>
 <!-- endbuild -->
 </body>
