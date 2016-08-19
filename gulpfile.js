@@ -33,7 +33,7 @@ gulp.task('copy', [ 'clean' ], function() {
       .pipe(gulp.dest('build/'));
 
   gulp.src( paths.images )
-    .pipe(gulp.dest('build/images'));
+    .pipe(gulp.dest('build/assets/images'));
 });
 
 gulp.task('lint', () => {
