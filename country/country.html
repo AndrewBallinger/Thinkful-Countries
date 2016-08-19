@@ -22,7 +22,7 @@
       <div class="label">Population of capital:</div>
       <div class="value">{{ country.capital_population }} square km</div></div>
   
-    <div class="info-row">
+    <div class="info-row" ng-if="country.neighbors.length > 0" >
       <div class="label">{{ country.neighbors.length }} neighbors:</div>
       <div class="value">
         <div ng-repeat="neighbor in country.neighbors" class="nav-button">
