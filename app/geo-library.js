@@ -1,5 +1,5 @@
 angular.module('geoLibrary', ['xml'])
-  .constant("API_ROUTE", "https://api.geonames.org/")
+  .constant("API_ROUTE", "http://api.geonames.org/")
   .constant("USERNAME", "andrewballinger")
   .config([ '$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push('xmlHttpInterceptor');
