@@ -1,3 +1,4 @@
+/*global angular*/
 angular.module('geoLibrary', ['xml'])
   .constant("API_ROUTE", "http://api.geonames.org/")
   .constant("USERNAME", "andrewballinger")
@@ -7,18 +8,12 @@ angular.module('geoLibrary', ['xml'])
  .factory('geoRouter', ['API_ROUTE', 'USERNAME', "$http", function(API_ROUTE, USERNAME, $http){
    return function(route, params) {
      var _params = angular.merge({ username: USERNAME }, params);
-     return $http.get(API_ROUTE + route,{ params: _params, timeout: 2000 } )
+     return $http.get(API_ROUTE + route,{ params: _params, timeout: 2000, cache: true } )
    }
  }])
  .factory('geoCountries', ['geoRouter', '$q', function(geoRouter, $q) {
-   var countries = [];
-   return function() {
-     if (countries.length > 0) return $q.when(countries);
-     return geoRouter("countryInfo")
-                 .then( function(response) {
-                   countries = response.data.geonames.country;
-                   return $q.when(countries);
-                 })}
+     return () => { return geoRouter("countryInfo")
+                 .then( (response) => $q.when(response.data.geonames.country))};
  }])
   .factory('geoCountry', ['geoRouter', '$q', function(geoRouter, $q) {
     return function(countryCode) {
