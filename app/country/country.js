@@ -1,3 +1,4 @@
+/*global viewsModule angular*/
 viewsModule.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when("/countries/:code", {
     templateUrl : './country/country.html',
